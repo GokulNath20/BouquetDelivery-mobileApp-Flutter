@@ -125,10 +125,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 const Icon(Icons.phone),
                                 Text(widget.user.phone.toString()),
                               ]),
-                              /*TableRow(children: [
-                                const Icon(Icons.credit_score),
-                                Text(widget.user.credit.toString()),
-                              ]),*/
                               widget.user.regdate.toString() == ""
                                   ? TableRow(children: [
                                       const Icon(Icons.date_range),
@@ -191,13 +187,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         MaterialButton(
                           onPressed: _registerAccountDialog,
                           child: const Text("CREATE NEW ACCOUNT"),
-                        ),
-                        const Divider(
-                          height: 2,
-                        ),
-                        MaterialButton(
-                          onPressed: buyCreditPage,
-                          child: const Text("BUY CREDIT"),
                         ),
                         const Divider(
                           height: 2,
@@ -790,14 +779,5 @@ class _ProfilePageState extends State<ProfilePage> {
         );
       },
     );
-  }
-
-  Future<void> buyCreditPage() async {
-    await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => MainPage(
-                  user: widget.user,
-                )));
   }
 }

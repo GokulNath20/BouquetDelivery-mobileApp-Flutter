@@ -82,10 +82,6 @@ class _LogoutPageState extends State<LogoutPage> {
                                 const Icon(Icons.phone),
                                 Text(widget.user.phone.toString()),
                               ]),
-                              TableRow(children: [
-                                const Icon(Icons.credit_score),
-                                Text(widget.user.credit.toString()),
-                              ]),
                               widget.user.regdate.toString() == ""
                                   ? TableRow(children: [
                                       const Icon(Icons.date_range),
@@ -151,13 +147,6 @@ class _LogoutPageState extends State<LogoutPage> {
                         MaterialButton(
                           onPressed: _registerAccountDialog,
                           child: const Text("CREATE NEW ACCOUNT"),
-                        ),
-                        const Divider(
-                          height: 2,
-                        ),
-                        const MaterialButton(
-                          onPressed: null,
-                          child: Text("BUY CREDIT"),
                         ),
                         const Divider(
                           height: 2,
