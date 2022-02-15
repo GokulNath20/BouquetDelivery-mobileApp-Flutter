@@ -1,11 +1,11 @@
+// ignore_for_file: avoid_print, unused_local_variable
+
 import 'dart:convert';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ndialog/ndialog.dart';
-import 'dart:async';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'loginpage.dart';
 import 'model/config.dart';
@@ -15,9 +15,11 @@ import 'model/user.dart';
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
   final User user;
-  const ProductDetailsPage(
-      {Key? key, required this.product, required this.user})
-      : super(key: key);
+  const ProductDetailsPage({
+    Key? key,
+    required this.product,
+    required this.user,
+  }) : super(key: key);
 
   @override
   State<ProductDetailsPage> createState() => _ProductDetailsPageState();
@@ -28,9 +30,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   List productlist = [];
   late double screenHeight, screenWidth, resWidth;
   var pathAsset = "assets/images/camera.png";
-  bool _hasCallSupport = false;
-  Future<void>? _launched;
-  final String _phone = '';
 
   @override
   Widget build(BuildContext context) {
@@ -247,22 +246,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     }
   }
 
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'phone',
-      path: phoneNumber,
-    );
-    await launch(launchUri.toString());
-  }
-
-  Future<void> _sendSms(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'sms',
-      path: phoneNumber,
-    );
-    await launch(launchUri.toString());
-  }
-
   int generateIds() {
     var rng = Random();
     int randomInt;
@@ -278,6 +261,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     http.post(Uri.parse(MyConfig.server + "/lab3/addCart.php"), body: {
       "cartprimg": widget.product.primg,
       "cartprname": widget.product.prname,
+      "cartprdesc": widget.product.prdesc,
       "cartprprice": widget.product.prprice,
       "cartemail": widget.user.email,
     }).then((response) {
@@ -300,22 +284,5 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         return;
       }
     });
-  }
-}
-
-class SnackBarPage extends StatelessWidget {
-  const SnackBarPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SnackBar(
-      content: const Text('Yay! A SnackBar!'),
-      action: SnackBarAction(
-        label: 'Undo',
-        onPressed: () {
-          // Some code to undo the change.
-        },
-      ),
-    );
   }
 }

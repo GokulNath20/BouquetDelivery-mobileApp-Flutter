@@ -16,7 +16,7 @@ class User {
     required this.address,
     required this.regdate,
     required this.otp,
-    required this.credit, prid, prname, prdesc,
+    required this.credit,
   });
 
   User.fromJson(Map<String, dynamic> json) {

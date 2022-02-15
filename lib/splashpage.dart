@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:project_bouquet_delivery/prdetailspage.dart';
-import 'package:project_bouquet_delivery/productpurchase.dart';
 import 'mainpage.dart';
 import 'model/config.dart';
 import 'model/user.dart';

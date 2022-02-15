@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:ndialog/ndialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:project_bouquet_delivery/mainpage.dart';
 import 'dart:convert';
 import 'loginpage.dart';
 import 'model/config.dart';
-import 'model/user.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -464,7 +462,7 @@ class _RegisterPageState extends State<RegisterPage> {
         progressDialog.dismiss();
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => const LoginPage()),
           (Route<dynamic> route) => false,
         );
       } else {

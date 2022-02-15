@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, avoid_print
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -181,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         MaterialButton(
                           onPressed: () => {_updateProfileDialog(3)},
-                          child: Text("UPDATE PASSWORD"),
+                          child: const Text("UPDATE PASSWORD"),
                         ),
                         const Divider(
                           height: 2,
@@ -613,7 +615,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onPressed: () {
                 ProgressDialog progressDialog = ProgressDialog(context,
-                    message: Text("Updating.."), title: null);
+                    message: const Text("Updating.."), title: null);
                 http.post(
                     Uri.parse(MyConfig.server + "/lab3/updateprofile.php"),
                     body: {

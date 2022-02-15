@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_bouquet_delivery/cartpage.dart';
-import 'package:project_bouquet_delivery/prdetailspage.dart';
 import 'package:project_bouquet_delivery/profile.dart';
 import 'logout.dart';
 import 'model/user.dart';
@@ -75,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               children: [
                 if (widget.user.email != 'na') ...[
                   Badge(
-                      badgeContent: Text('0'),
+                      badgeContent: const Text('0'),
                       child: Icon(Icons.store_mall_directory,
                           size: resWidth * 0.07)),
                 ] else ...[

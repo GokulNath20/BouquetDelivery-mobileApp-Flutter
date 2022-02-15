@@ -1,23 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
-import 'package:project_bouquet_delivery/productpurchase.dart';
-import 'billpage.dart';
+import 'package:project_bouquet_delivery/billpage.dart';
+import 'package:project_bouquet_delivery/model/product.dart';
+import 'package:project_bouquet_delivery/server.dart';
 import 'prdetailspage.dart';
 import 'loginpage.dart';
 import 'model/config.dart';
-import 'model/product.dart';
 import 'model/user.dart';
 
 class CartPage extends StatefulWidget {
   final User user;
-  const CartPage({
-    Key? key,
-    required this.user,
-  }) : super(key: key);
+  const CartPage({Key? key, required this.user}) : super(key: key);
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -25,6 +24,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   late User user = widget.user;
+  late Product product;
   List productlist = [];
   String titlecenter = "Loading Cart...";
   late double screenHeight, screenWidth, resWidth;
@@ -144,12 +144,14 @@ class _CartPageState extends State<CartPage> {
                 minimumSize: const Size(200, 30),
                 maximumSize: const Size(200, 30),
               ),
-              onPressed: () {
+              onPressed: () async {
+                final sessionId = await Server().createCheckout();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (BuildContext context) => BillPage(
                       user: user,
+                      sessionId: sessionId,
                     ),
                   ),
                 );
@@ -160,55 +162,6 @@ class _CartPageState extends State<CartPage> {
           ],
         ],
       ),
-    );
-  }
-
-  _navigateMainPage() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          title: const Text(
-            "Go to Prodcut Page",
-            style: TextStyle(),
-          ),
-          content: const Text(
-            "Are you sure?",
-            style: TextStyle(),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text(
-                "Yes",
-                style: TextStyle(),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Productlist(
-                      user: user,
-                    ),
-                  ),
-                );
-              },
-            ),
-            TextButton(
-              child: const Text(
-                "No",
-                style: TextStyle(),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 
@@ -300,18 +253,18 @@ class _CartPageState extends State<CartPage> {
 
   _prodDetails(int index) {
     Product product = Product(
-      prid: productlist[index]['prid'],
-      primg: productlist[index]['primg'],
-      prname: productlist[index]['prname'],
-      prdesc: productlist[index]['prdesc'],
-      prprice: productlist[index]['prprice'],
+      prid: productlist[index]['cartprid'],
+      primg: productlist[index]['cartprimg'],
+      prname: productlist[index]['cartprname'],
+      prdesc: productlist[index]['cartprdesc'],
+      prprice: productlist[index]['cartprprice'],
     );
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (BuildContext context) => ProductDetailsPage(
-                  product: product,
                   user: user,
+                  product: product,
                 )));
   }
 
