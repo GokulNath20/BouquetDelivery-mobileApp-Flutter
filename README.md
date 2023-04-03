@@ -9,7 +9,7 @@
 
 ## Introduction
 
-- Bouquet Delivery Sepang is a business owned by my friend. I was assigned a project during Mobile Programming course in UUM to develop a mobile application for his business.
+- Bouquet Delivery Sepang is a business owned by my friend. I was assigned a project during Mobile Programming course in UUM to develop a simple mobile application for his business.
 
 ![Capture1](https://user-images.githubusercontent.com/61192087/229339221-6b09dc77-205a-4975-b225-ab4ef4381ce9.PNG)
 ![Capture](https://user-images.githubusercontent.com/61192087/229339219-6a29124a-8604-4d96-aa3e-140e2f28bdde.PNG)
